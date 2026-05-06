@@ -781,6 +781,7 @@ h1 {
   height: 2.65rem;
   border-radius: 12px;
   margin-bottom: 0.85rem;
+  color: var(--text);
   background: linear-gradient(
     135deg,
     rgba(113, 147, 255, 0.28),
@@ -793,8 +794,6 @@ h1 {
 .icon-box svg {
   width: 1.28rem;
   height: 1.28rem;
-  stroke: var(--text);
-  fill: none;
   stroke-width: 1.65;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -880,6 +879,7 @@ h1 {
 
   .marquee-track {
     animation: none;
+    transform: none;
   }
 
   .grad-text {
