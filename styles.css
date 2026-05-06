@@ -224,7 +224,7 @@ body::before {
 }
 
 .page-hero h1 {
-  max-width: 16ch;
+  max-width: min(22ch, 100%);
 }
 
 .hero-actions {
@@ -331,6 +331,11 @@ h1 {
   .btn:hover::before {
     opacity: 1;
     animation: sheen-slide 0.85s ease forwards;
+  }
+
+  .btn:not(:hover)::before {
+    opacity: 0;
+    animation: none;
   }
 
   .btn-secondary:hover {
