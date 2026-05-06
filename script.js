@@ -4,6 +4,28 @@ if (yearEl) {
 }
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function initSpotlight() {
+  if (prefersReducedMotion) return;
+  document.addEventListener(
+    "mousemove",
+    (e) => {
+      document.querySelectorAll(".spotlight-card").forEach((card) => {
+        const r = card.getBoundingClientRect();
+        const mx = ((e.clientX - r.left) / r.width) * 100;
+        const my = ((e.clientY - r.top) / r.height) * 100;
+        if (mx >= -8 && mx <= 108 && my >= -8 && my <= 108) {
+          card.style.setProperty("--mx", `${mx}%`);
+          card.style.setProperty("--my", `${my}%`);
+        }
+      });
+    },
+    { passive: true }
+  );
+}
+
+initSpotlight();
+
 const revealEls = document.querySelectorAll(".reveal");
 
 if (!prefersReducedMotion) {
