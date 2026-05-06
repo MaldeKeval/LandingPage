@@ -6,8 +6,20 @@ if (yearEl) {
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealEls = document.querySelectorAll(".reveal");
 
+if (!prefersReducedMotion) {
+  revealEls.forEach((el, index) => {
+    // Keep explicit delays from inline styles, otherwise apply a light stagger.
+    if (!el.style.getPropertyValue("--reveal-delay")) {
+      el.style.setProperty("--reveal-delay", `${Math.min(index * 35, 220)}ms`);
+    }
+  });
+}
+
 if (prefersReducedMotion) {
-  revealEls.forEach((el) => el.classList.add("is-visible"));
+  revealEls.forEach((el) => {
+    el.style.setProperty("--reveal-delay", "0ms");
+    el.classList.add("is-visible");
+  });
 } else if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     (entries) => {
